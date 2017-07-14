@@ -6,7 +6,6 @@ import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.Intent;
-import android.graphics.BitmapFactory;
 import android.media.RingtoneManager;
 import android.os.Build;
 import android.support.annotation.RequiresApi;
@@ -35,8 +34,6 @@ public class MyJobService extends com.firebase.jobdispatcher.JobService {
             }
         });
         t.start();
-
-
         return true; //is there ongoing work?
     }
 
@@ -87,7 +84,7 @@ public class MyJobService extends com.firebase.jobdispatcher.JobService {
         });
         //BitmapFactory.decodeStream()
         */
-        builder.setStyle(new Notification.BigPictureStyle().bigPicture(BitmapFactory.decodeResource(getResources(), R.drawable.notification)));
+        //builder.setStyle(new Notification.BigPictureStyle().bigPicture(BitmapFactory.decodeResource(getResources(), R.drawable)));
         //pre O channels
       //  builder.setPriority(Notification.PRIORITY_HIGH);
       //  builder.setDefaults(Notification.DEFAULT_ALL);
