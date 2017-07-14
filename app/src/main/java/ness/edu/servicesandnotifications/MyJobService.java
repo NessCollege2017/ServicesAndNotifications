@@ -5,19 +5,30 @@ import android.util.Log;
 import com.firebase.jobdispatcher.JobParameters;
 
 /**
- * Created by Android2017 on 7/11/2017.
+ * Represents a job to be dispatched while the device is idle.
  */
 
 public class MyJobService extends com.firebase.jobdispatcher.JobService {
     private static final String TAG = "Ness";
 
     @Override
-    public boolean onStartJob(JobParameters job) {
-        //
-        showNotification();
-        return false; //is there ongoing progress?
+    public boolean onStartJob(final JobParameters job) {
+        Thread t = new Thread(new Runnable() {
+            @Override
+            public void run() {
+                //fake some work:
+                try {Thread.sleep(1000);} catch (InterruptedException ignored) {}
+                showNotification();
+                jobFinished(job, true);
+            }
+        });
+        t.start();
+
+
+        return true; //is there ongoing work?
     }
 
+    //No UI!
     private void showNotification() {
         Log.d(TAG, "showNotification: ");
     }
